@@ -1,5 +1,5 @@
 @media screen
-  and (min-device-width: 1201px)
+  and (min-width: 1201px)
   and (-webkit-min-device-pixel-ratio: 1) {
     .software {
         width: 435px;
@@ -9,12 +9,12 @@
 }
 
 @media screen
-  and (min-device-width: 1001px)
-  and (max-device-width: 1200px)
+  and (min-width: 1001px)
+  and (max-width: 1200px)
   and (-webkit-min-device-pixel-ratio: 1) {
     .software {
         width: 430px;
         height: 585px;
-        background: url(software.png) 435 0px;
+        background: url(software.png) 435px 0px;
     }
 }
