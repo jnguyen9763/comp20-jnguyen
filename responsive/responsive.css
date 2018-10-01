@@ -4,7 +4,7 @@
     .software {
         width: 435px;
         height: 585px;
-        background: url(software.png) 0px 0px;
+        background: url(software.png) 0 0px;
     }
 }
 
@@ -38,5 +38,15 @@
         width: 715px;
         height: 626px;
         background: url(software.png) 0 -585px;
+    }
+}
+
+@media screen
+  and (max-width: 600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .software {
+        width: 489px;
+        height: 626px;
+        background: url(software.png) 489px -585px;
     }
 }
