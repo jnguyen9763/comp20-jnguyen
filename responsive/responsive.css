@@ -7,3 +7,14 @@
         background: url(software.png) 0 0px;
     }
 }
+
+@media screen
+  and (min-device-width: 1001px)
+  and (max-device-width: 1200px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .software {
+        width: 430px;
+        height: 585px;
+        background: url(software.png) 435 0px;
+    }
+}
