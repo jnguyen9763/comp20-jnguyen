@@ -50,3 +50,56 @@
         background: url(software.png) 489px -585px;
     }
 }
+
+@media screen
+  and (min-width: 1201px)
+  and (min--moz-device-pixel-ratio: 1) {
+    .software {
+        width: 435px;
+        height: 585px;
+        background: url(software.png) 0 0px;
+    }
+}
+
+@media screen
+  and (min-width: 1001px)
+  and (max-width: 1200px)
+  and (min--moz-device-pixel-ratio: 1) {
+    .software {
+        width: 425px;
+        height: 585px;
+        background: url(software.png) 770px 0px;
+    }
+}
+
+@media screen
+  and (min-width: 801px)
+  and (max-width: 1000px)
+  and (min--moz-device-pixel-ratio: 1) {
+    .software {
+        width: 330px;
+        height: 585px;
+        background: url(software.png) 330px 0px;
+    }
+}
+
+@media screen
+  and (min-width: 601px)
+  and (max-width: 800px)
+  and (min--moz-device-pixel-ratio: 1) {
+    .software {
+        width: 715px;
+        height: 626px;
+        background: url(software.png) 0 -585px;
+    }
+}
+
+@media screen
+  and (max-width: 600px)
+  and (min--moz-device-pixel-ratio: 1) {
+    .software {
+        width: 489px;
+        height: 626px;
+        background: url(software.png) 489px -585px;
+    }
+}
