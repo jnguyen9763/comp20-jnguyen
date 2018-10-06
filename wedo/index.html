@@ -14,7 +14,13 @@
 <div id="lyrics"></div>
 
 <script>
-	// Complete this section and create a CSS file named style.css
+    var video = document.getElementById("wedo");
+	var subtitle = document.getElementById("lyrics");
+
+    video.addEventListener("timeupdate", function() {
+        if (video.currentTime > 4 && video.currentTime < 6)
+            subtitle.innerHTML = "<p>Who controls the British crown?</p>";
+    });
 </script>
 </body>
-</html>	
+</html>
