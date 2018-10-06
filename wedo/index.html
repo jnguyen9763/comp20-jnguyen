@@ -20,6 +20,12 @@
     video.addEventListener("timeupdate", function() {
         if (video.currentTime > 4 && video.currentTime < 6)
             subtitle.innerHTML = "<p>Who controls the British crown?</p>";
+        else if (video.currentTime > 6 && video.currentTime < 8)
+            subtitle.innerHTML = "<p>Who keeps the metric system down?</p>";
+        else if (video.currentTime > 8 && video.currentTime < 11)
+            subtitle.innerHTML = "<p>We do, we do!</p>";
+        else if (video.currentTime > 12.5 && video.currentTime < 14)
+            subtitle.innerHTML = "<p>Who keeps Atlantis off the maps?</p>";
     });
 </script>
 </body>
