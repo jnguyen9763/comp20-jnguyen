@@ -4,3 +4,7 @@ html {
     font-family: Tahoma, sans-serif;
     color: white;
 }
+
+.bold {
+    font-weight: bold;
+}
