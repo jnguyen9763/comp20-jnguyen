@@ -1,5 +1,5 @@
-# Creating Captions with DOM and Event Listeners
-Everything seems to be implemented correctly based on the HTML and CSS validators. The captions work and appear at their intended times so the JavaScript seems fine as well.
+# Creating Subtitles with DOM and Event Listeners
+Everything seems to be implemented correctly based on the HTML and CSS validators. The subtitles work and appear at their intended times so the JavaScript seems fine as well.
 
 I didn't collaborate with anyone but I relied on the Double Rainbow example from the "examples" folder on GitHub.
 
