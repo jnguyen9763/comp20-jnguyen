@@ -9,6 +9,11 @@ html {
     text-decoration: underline;
 }
 
+#wedo {
+    border-style: groove;
+    border-width: 0.25em;
+}
+
 #lyrics {
     font-size: 1.5em;
 }
