@@ -38,12 +38,16 @@ function initMap() {
     for (var i = 0; i < stopNames.length - 4; i++) {
         AlewifetoBraintree[i] = stations[stopNames[i]];
     }
+    var JFKtoAshmont = [stations["JFK/UMass"], stations["Savin Hill"], stations["Fields Corner"], stations["Shawmut"], stations["Ashmont"]];
+    var allStations = [AlewifetoBraintree, JFKtoAshmont];
+    for (var k = 0; k < allStations.length; k++) {
+        var polylinePath = new google.maps.Polyline({
+            path: allStations[k],
+            strokeWeight: 2,
+            strokeColor: "#000000",
+            strokeOpacity: 1.0
+        });
+        polylinePath.setMap(map);
+    }
 
-    var polylinePath = new google.maps.Polyline({
-        path: AlewifetoBraintree,
-        strokeWeight: 2,
-        strokeColor: "#000000",
-        strokeOpacity: 1.0
-    });
-    polylinePath.setMap(map);
 }
