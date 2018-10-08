@@ -23,9 +23,14 @@ var stations = {
     "Braintree": {lat: 42.2078543, lng: -71.0011385},
 };
 
+var stopNames = Object.keys(stations);
+
 function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
         center: stations["South Station"],
         zoom: 10
     });
+    for (var stopName of stopNames) {
+        var marker = new google.maps.Marker({position: stations[stopName], map: map});
+    }
 }
