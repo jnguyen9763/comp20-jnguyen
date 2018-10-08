@@ -56,7 +56,7 @@ function drawPolyline() {
         var polylinePath = new google.maps.Polyline({
             path: allStations[k],
             strokeWeight: 2,
-            strokeColor: "#000000",
+            strokeColor: "#FF0000",
             strokeOpacity: 1.0
         });
         polylinePath.setMap(map);
