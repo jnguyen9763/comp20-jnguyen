@@ -25,21 +25,33 @@ var stations = {
 
 var stopNames = Object.keys(stations);
 
+var map;
 function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
+    // Displays Google Maps
+    map = new google.maps.Map(document.getElementById("map"), {
         center: stations["South Station"],
         zoom: 11
     });
+    // Creates markers for each station
     for (var stopName of stopNames) {
         var marker = new google.maps.Marker({position: stations[stopName], map: map});
     }
+    // Draw polyline connecting the stations
+    drawPolyline();
+}
 
+function drawPolyline() {
+    // Create array of coordinates from Alewife to Braintree
     var AlewifetoBraintree = [];
     for (var i = 0; i < stopNames.length - 4; i++) {
         AlewifetoBraintree[i] = stations[stopNames[i]];
     }
-    var JFKtoAshmont = [stations["JFK/UMass"], stations["Savin Hill"], stations["Fields Corner"], stations["Shawmut"], stations["Ashmont"]];
+    // Create array of coordinates from JFK/UMass to Ashmont
+    var JFKtoAshmont = [stations["JFK/UMass"], stations["Savin Hill"],
+    stations["Fields Corner"], stations["Shawmut"], stations["Ashmont"]];
+    // Combine the two arrays
     var allStations = [AlewifetoBraintree, JFKtoAshmont];
+    // For each array, draw a polyline connecting all the stations
     for (var k = 0; k < allStations.length; k++) {
         var polylinePath = new google.maps.Polyline({
             path: allStations[k],
@@ -49,5 +61,4 @@ function initMap() {
         });
         polylinePath.setMap(map);
     }
-
 }
