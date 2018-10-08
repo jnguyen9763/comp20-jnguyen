@@ -28,7 +28,7 @@ var stopNames = Object.keys(stations);
 function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
         center: stations["South Station"],
-        zoom: 10
+        zoom: 11
     });
     for (var stopName of stopNames) {
         var marker = new google.maps.Marker({position: stations[stopName], map: map});
