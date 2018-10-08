@@ -33,4 +33,17 @@ function initMap() {
     for (var stopName of stopNames) {
         var marker = new google.maps.Marker({position: stations[stopName], map: map});
     }
+
+    var AlewifetoBraintree = [];
+    for (var i = 0; i < stopNames.length - 4; i++) {
+        AlewifetoBraintree[i] = stations[stopNames[i]];
+    }
+
+    var polylinePath = new google.maps.Polyline({
+        path: AlewifetoBraintree,
+        strokeWeight: 2,
+        strokeColor: "#000000",
+        strokeOpacity: 1.0
+    });
+    polylinePath.setMap(map);
 }
