@@ -79,4 +79,5 @@ function findMyLocation() {
 
 function showMyLocation() {
     map.panTo(myLocation);
+    var marker = new google.maps.Marker({position: myLocation, map: map});
 }
