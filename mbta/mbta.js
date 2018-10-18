@@ -26,6 +26,7 @@ var stations = {
 var stopNames = Object.keys(stations);
 
 var map;
+var myLocation;
 function initMap() {
     // Displays Google Maps
     map = new google.maps.Map(document.getElementById("map"), {
@@ -38,6 +39,7 @@ function initMap() {
     }
     // Draw polyline connecting the stations
     drawPolyline();
+    findMyLocation();
 }
 
 function drawPolyline() {
@@ -61,4 +63,20 @@ function drawPolyline() {
         });
         polylinePath.setMap(map);
     }
+}
+
+function findMyLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            myLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
+        showMyLocation();
+        });
+    }
+    else {
+        alert("Geolocation is not support.");
+    }
+}
+
+function showMyLocation() {
+    map.panTo(myLocation);
 }
