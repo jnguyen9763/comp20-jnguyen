@@ -80,4 +80,9 @@ function findMyLocation() {
 function showMyLocation() {
     map.panTo(myLocation);
     var marker = new google.maps.Marker({position: myLocation, map: map, icon: "person.png"});
+    google.maps.event.addListener(marker, "click", function() {
+        var infoWindow = new google.maps.InfoWindow();
+        infoWindow.setContent("test");
+        infoWindow.open(map, marker);
+    });
 }
