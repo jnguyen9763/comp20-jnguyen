@@ -31,7 +31,7 @@ function initMap() {
     // Displays Google Maps
     map = new google.maps.Map(document.getElementById("map"), {
         center: stations["South Station"],
-        zoom: 11
+        zoom: 13
     });
     // Creates markers for each station
     for (var stopName of stopNames) {
