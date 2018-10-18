@@ -35,7 +35,7 @@ function initMap() {
     });
     // Creates markers for each station
     for (var stopName of stopNames) {
-        var marker = new google.maps.Marker({position: stations[stopName], map: map});
+        var marker = new google.maps.Marker({position: stations[stopName], map: map, icon: "subway.png"});
     }
     // Draw polyline connecting the stations
     drawPolyline();
@@ -79,5 +79,5 @@ function findMyLocation() {
 
 function showMyLocation() {
     map.panTo(myLocation);
-    var marker = new google.maps.Marker({position: myLocation, map: map});
+    var marker = new google.maps.Marker({position: myLocation, map: map, icon: "person.png"});
 }
