@@ -92,14 +92,17 @@ function findMyLocation() {
 function showMyLocation() {
     map.panTo(myLocation);
     var marker = new google.maps.Marker({position: myLocation, map: map, icon: "person.png"});
-    google.maps.event.addListener(marker, "click", function() {
-        if (infoWindow != undefined)
-            infoWindow.close();
-        infoWindow = new google.maps.InfoWindow();
-        var content = findNearestStation();
-        infoWindow.setContent(content);
-        infoWindow.open(map, marker);
-    });
+    var infoWindow;
+    google.maps.event.addListener(marker, "click", (function(marker, infoWindow) {
+        return function() {
+            if (infoWindow != undefined)
+                infoWindow.close();
+            infoWindow = new google.maps.InfoWindow();
+            var content = findNearestStation();
+            infoWindow.setContent(content);
+            infoWindow.open(map, marker);
+        }
+    }(marker, infoWindow)));
 }
 
 function findNearestStation() {
