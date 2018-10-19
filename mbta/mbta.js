@@ -29,25 +29,25 @@ var map;
 var myLocation;
 
 function initMap() {
+    var marker = [];
+    var infoWindow = [];
     // Displays Google Maps
     map = new google.maps.Map(document.getElementById("map"), {
         center: stations["South Station"],
         zoom: 13
     });
     // Creates markers for each station
-    for (var stopName of stopNames) {
-        var marker = new google.maps.Marker({position: stations[stopName], map: map, icon: "subway.png"});
-        var infoWindow;
-        google.maps.event.addListener(marker, "click", (function(marker, infoWindow) {
+    for (var i = 0; i < stopNames.length; i++) {
+        marker[i] = new google.maps.Marker({position: stations[stopNames[i]], map: map, icon: "subway.png"});
+        google.maps.event.addListener(marker[i], "click", (function(marker, infoWindow, content) {
             return function() {
                 if (infoWindow != undefined)
                     infoWindow.close();
                 infoWindow = new google.maps.InfoWindow();
-                var content = "test";
                 infoWindow.setContent(content);
                 infoWindow.open(map, marker);
             }
-        }(marker, infoWindow)));
+        }(marker[i], infoWindow[i], stopNames[i])));
     }
     // Draw polyline connecting the stations
     drawPolyline();
@@ -90,16 +90,15 @@ function findMyLocation() {
 }
 
 function showMyLocation() {
+    var infoWindow;
     map.panTo(myLocation);
     var marker = new google.maps.Marker({position: myLocation, map: map, icon: "person.png"});
-    var infoWindow;
     google.maps.event.addListener(marker, "click", (function(marker, infoWindow) {
         return function() {
             if (infoWindow != undefined)
                 infoWindow.close();
             infoWindow = new google.maps.InfoWindow();
-            var content = findNearestStation();
-            infoWindow.setContent(content);
+            infoWindow.setContent(findNearestStation());
             infoWindow.open(map, marker);
         }
     }(marker, infoWindow)));
