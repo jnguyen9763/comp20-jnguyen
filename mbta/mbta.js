@@ -27,6 +27,7 @@ var stopNames = Object.keys(stations);
 
 var map;
 var myLocation;
+var infoWindow;
 function initMap() {
     // Displays Google Maps
     map = new google.maps.Map(document.getElementById("map"), {
@@ -81,7 +82,9 @@ function showMyLocation() {
     map.panTo(myLocation);
     var marker = new google.maps.Marker({position: myLocation, map: map, icon: "person.png"});
     google.maps.event.addListener(marker, "click", function() {
-        var infoWindow = new google.maps.InfoWindow();
+        if (infoWindow != undefined)
+            infoWindow.close();
+        infoWindow = new google.maps.InfoWindow();
         var content = findNearestStation();
         infoWindow.setContent(content);
         infoWindow.open(map, marker);
@@ -96,7 +99,7 @@ function findNearestStation() {
     var new_distance;
 
     for (var i = 1; i < stopNames.length; i++) {
-        var stationCoord = new google.maps.LatLng(stations[stopNames[i]]);
+        stationCoord = new google.maps.LatLng(stations[stopNames[i]]);
         new_distance = google.maps.geometry.spherical.computeDistanceBetween(myCoord, stationCoord);
         if (distance > new_distance) {
             station = stopNames[i];
