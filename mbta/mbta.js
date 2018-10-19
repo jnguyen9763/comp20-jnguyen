@@ -108,6 +108,17 @@ function findNearestStation() {
     }
 
     distance *= 0.00062137;
+    showNearestStation(stations[station]);
 
     return "<p>Nearest Station: " + station + "</p><p>Distance: " + distance + " miles</p>";
+}
+
+function showNearestStation(station) {
+    var polylinePath = new google.maps.Polyline({
+        path: [myLocation, station],
+        strokeWeight: 2,
+        strokeColor: "#000000",
+        strokeOpacity: 1.0
+    });
+    polylinePath.setMap(map);
 }
