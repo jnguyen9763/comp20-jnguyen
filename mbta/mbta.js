@@ -82,7 +82,29 @@ function showMyLocation() {
     var marker = new google.maps.Marker({position: myLocation, map: map, icon: "person.png"});
     google.maps.event.addListener(marker, "click", function() {
         var infoWindow = new google.maps.InfoWindow();
-        infoWindow.setContent("test");
+        var content = findNearestStation();
+        infoWindow.setContent(content);
         infoWindow.open(map, marker);
     });
+}
+
+function findNearestStation() {
+    var station = stopNames[0];
+    var myCoord = new google.maps.LatLng(myLocation);
+    var stationCoord = new google.maps.LatLng(stations[station]);
+    var distance = google.maps.geometry.spherical.computeDistanceBetween(myCoord, stationCoord);
+    var new_distance;
+
+    for (var i = 1; i < stopNames.length; i++) {
+        var stationCoord = new google.maps.LatLng(stations[stopNames[i]]);
+        new_distance = google.maps.geometry.spherical.computeDistanceBetween(myCoord, stationCoord);
+        if (distance > new_distance) {
+            station = stopNames[i];
+            distance = new_distance;
+        }
+    }
+
+    // TODO: convert distance to miles
+
+    return "Nearest Station: " + station + "<br> Distance: " + distance;
 }
