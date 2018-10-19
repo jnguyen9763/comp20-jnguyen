@@ -107,7 +107,7 @@ function findNearestStation() {
         }
     }
 
-    // TODO: convert distance to miles
+    distance *= 0.00062137;
 
-    return "Nearest Station: " + station + "<br> Distance: " + distance;
+    return "<p>Nearest Station: " + station + "</p><p>Distance: " + distance + " miles</p>";
 }
