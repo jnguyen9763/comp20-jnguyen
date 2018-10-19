@@ -27,7 +27,7 @@ var stopNames = Object.keys(stations);
 
 var map;
 var myLocation;
-var infoWindow;
+
 function initMap() {
     // Displays Google Maps
     map = new google.maps.Map(document.getElementById("map"), {
@@ -37,6 +37,17 @@ function initMap() {
     // Creates markers for each station
     for (var stopName of stopNames) {
         var marker = new google.maps.Marker({position: stations[stopName], map: map, icon: "subway.png"});
+        var infoWindow;
+        google.maps.event.addListener(marker, "click", (function(marker, infoWindow) {
+            return function() {
+                if (infoWindow != undefined)
+                    infoWindow.close();
+                infoWindow = new google.maps.InfoWindow();
+                var content = "test";
+                infoWindow.setContent(content);
+                infoWindow.open(map, marker);
+            }
+        }(marker, infoWindow)));
     }
     // Draw polyline connecting the stations
     drawPolyline();
