@@ -43,6 +43,7 @@ function initMap() {
             return function() {
                 if (infoWindow != undefined)
                     infoWindow.close();
+                getInformation("place-davis");
                 infoWindow = new google.maps.InfoWindow();
                 infoWindow.setContent(content);
                 infoWindow.open(map, marker);
@@ -52,6 +53,24 @@ function initMap() {
     // Draw polyline connecting the stations
     drawPolyline();
     findMyLocation();
+}
+
+function getInformation(stationID) {
+    var request = new XMLHttpRequest();
+    var url = "https://chicken-of-the-sea.herokuapp.com/redline/schedule.json?stop_id=" + stationID;
+    console.log(url);
+    request.open("get", url, true);
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+            var data = request.responseText;
+            var schedule = JSON.parse(data);
+            console.log(schedule);
+        }
+        if (request.readyState == 4 && request.status != 200) {
+            alert("An error has occured.");
+        }
+    }
+    request.send();
 }
 
 function drawPolyline() {
