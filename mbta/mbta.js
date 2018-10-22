@@ -1,26 +1,26 @@
 var stations = {
-    "Alewife": {lat: 42.395428, lng: -71.142483},
-    "Davis": {lat: 42.39674, lng: -71.121815},
-    "Porter Square": {lat: 42.3884, lng: -71.11914899999999},
-    "Harvard Square": {lat: 42.373362, lng: -71.118956},
-    "Central Square": {lat: 42.365486, lng: -71.103802},
-    "Kendall/MIT": {lat: 42.36249079, lng: -71.08617653},
-    "Charles/MGH": {lat: 42.361166, lng: -71.070628},
-    "Park Street": {lat: 42.35639457, lng: -71.0624242},
-    "Downtown Crossing": {lat: 42.355518, lng: -71.060225},
-    "South Station": {lat: 42.352271, lng: -71.05524200000001},
-    "Broadway": {lat: 42.342622, lng: -71.056967},
-    "Andrew": {lat: 42.330154, lng: -71.057655},
-    "JFK/UMass": {lat: 42.320685, lng: -71.052391},
-    "North Quincy": {lat: 42.275275, lng: -71.029583},
-    "Wollaston": {lat: 42.2665139, lng: -71.0203369},
-    "Quincy Center": {lat: 42.251809, lng: -71.005409},
-    "Quincy Adams": {lat: 42.233391, lng: -71.007153},
-    "Braintree": {lat: 42.2078543, lng: -71.0011385},
-    "Savin Hill": {lat: 42.31129, lng: -71.053331},
-    "Fields Corner": {lat: 42.300093, lng: -71.061667},
-    "Shawmut": {lat: 42.29312583, lng: -71.06573796000001},
-    "Ashmont": {lat: 42.284652, lng: -71.06448899999999},
+    "Alewife": {coord: {lat: 42.395428, lng: -71.142483}, id: "place-andrw"},
+    "Davis": {coord: {lat: 42.39674, lng: -71.121815}, id: "place-davis"},
+    "Porter Square": {coord: {lat: 42.3884, lng: -71.11914899999999}, id: "place-portr"},
+    "Harvard Square": {coord: {lat: 42.373362, lng: -71.118956}, id: "place-harsq"},
+    "Central Square": {coord: {lat: 42.365486, lng: -71.103802}, id: "place-cntsq"},
+    "Kendall/MIT": {coord: {lat: 42.36249079, lng: -71.08617653}, id: "place-knncl"},
+    "Charles/MGH": {coord: {lat: 42.361166, lng: -71.070628}, id: "place-chmnl"},
+    "Park Street": {coord: {lat: 42.35639457, lng: -71.0624242}, id: "place-pktrm"},
+    "Downtown Crossing": {coord: {lat: 42.355518, lng: -71.060225}, id: "place-dwnxg"},
+    "South Station": {coord: {lat: 42.352271, lng: -71.05524200000001}, id: "place-sstat"},
+    "Broadway": {coord: {lat: 42.342622, lng: -71.056967}, id: "place-brdwy"},
+    "Andrew": {coord: {lat: 42.330154, lng: -71.057655}, id: "place-andrw"},
+    "JFK/UMass": {coord: {lat: 42.320685, lng: -71.052391}, id: "place-jfk"},
+    "North Quincy": {coord: {lat: 42.275275, lng: -71.029583}, id: "place-nqncy"},
+    "Wollaston": {coord: {lat: 42.2665139, lng: -71.0203369}, id: "place-wlsta"},
+    "Quincy Center": {coord: {lat: 42.251809, lng: -71.005409}, id: "place-qnctr"},
+    "Quincy Adams": {coord: {lat: 42.233391, lng: -71.007153}, id: "place-qamnl"},
+    "Braintree": {coord: {lat: 42.2078543, lng: -71.0011385}, id: "place-brntn"},
+    "Savin Hill": {coord: {lat: 42.31129, lng: -71.053331}, id: "place-shmnl"},
+    "Fields Corner": {coord: {lat: 42.300093, lng: -71.061667}, id: "place-fldcr"},
+    "Shawmut": {coord: {lat: 42.29312583, lng: -71.06573796000001}, id: "place-smmnl"},
+    "Ashmont": {coord: {lat: 42.284652, lng: -71.06448899999999}, id: "place-asmnl"},
 };
 
 var stopNames = Object.keys(stations);
@@ -57,7 +57,6 @@ function initMap() {
 function getInformation(stationID, infoWindow) {
     var request = new XMLHttpRequest();
     var url = "https://chicken-of-the-sea.herokuapp.com/redline/schedule.json?stop_id=" + stationID;
-    console.log(url);
     request.open("get", url, true);
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
