@@ -43,9 +43,8 @@ function initMap() {
             return function() {
                 if (infoWindow != undefined)
                     infoWindow.close();
-                getInformation("place-davis");
                 infoWindow = new google.maps.InfoWindow();
-                infoWindow.setContent(content);
+                getInformation("place-davis", infoWindow);
                 infoWindow.open(map, marker);
             }
         }(marker[i], infoWindow[i], stopNames[i])));
@@ -55,7 +54,7 @@ function initMap() {
     findMyLocation();
 }
 
-function getInformation(stationID) {
+function getInformation(stationID, infoWindow) {
     var request = new XMLHttpRequest();
     var url = "https://chicken-of-the-sea.herokuapp.com/redline/schedule.json?stop_id=" + stationID;
     console.log(url);
@@ -64,7 +63,9 @@ function getInformation(stationID) {
         if (request.readyState == 4 && request.status == 200) {
             var data = request.responseText;
             var schedule = JSON.parse(data);
-            console.log(schedule);
+            var test = schedule["data"][0]["attributes"]["arrival_time"];
+            console.log(test);
+            infoWindow.setContent(test);
         }
         if (request.readyState == 4 && request.status != 200) {
             alert("An error has occured.");
