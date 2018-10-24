@@ -65,8 +65,8 @@ function getInformation(stationID, infoWindow, stationName) {
             var data = request.responseText;
             var schedule = JSON.parse(data);
             schedule = schedule["data"];
-            var content = "<p>";
-            content += stationName + "</p><p>";
+            var content = "<div class='bold'>";
+            content += stationName + "</div><div>";
             for (var i = 0; i < schedule.length; i++) {
                 console.log(schedule[i]["attributes"]);
             }
@@ -149,7 +149,7 @@ function findNearestStation() {
     distance = Math.round(distance) / 100;
     showNearestStation(stations[station]["coord"]);
 
-    return "<p>Nearest Station: " + station + "</p><p>Distance: " + distance + " miles</p>";
+    return "<div><span class='bold'>Nearest Station:</span> " + station + "</div><div><span class='bold'>Distance:</span> " + distance + " miles</div>";
 }
 
 function showNearestStation(station) {
