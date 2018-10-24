@@ -65,8 +65,8 @@ function getInformation(stationID, infoWindow, stationName) {
             var data = request.responseText;
             var schedule = JSON.parse(data);
             schedule = schedule["data"];
-            var content = "<div class='bold'>";
-            content += stationName + "</div><div>";
+            var content = "<div class='header'>";
+            content += stationName + "</div><table><tr><th>Arrival Time</th><th>Departure Time</th><th>Direction</th></tr><tr>";
             for (var i = 0; i < schedule.length; i++) {
                 console.log(schedule[i]["attributes"]);
             }

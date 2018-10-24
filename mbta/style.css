@@ -11,3 +11,13 @@ html, body {
 .bold {
     font-weight: bold;
 }
+
+.header {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+th, td {
+    padding: 0px 10px;
+}
