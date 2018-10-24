@@ -62,13 +62,19 @@ function getInformation(stationID, infoWindow, stationName) {
     request.open("get", url, true);
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
+            var arrivalTime, departureTime, direction;
+            console.log(arrivalTime);
             var data = request.responseText;
             var schedule = JSON.parse(data);
             schedule = schedule["data"];
             var content = "<div class='header'>";
-            content += stationName + "</div><table><tr><th>Arrival Time</th><th>Departure Time</th><th>Direction</th></tr><tr>";
+            content += stationName + "</div><table><tr><th>Arrival Time</th><th>Departure Time</th><th>Direction</th></tr>";
             for (var i = 0; i < schedule.length; i++) {
-                console.log(schedule[i]["attributes"]);
+                arrivalTime = correctInfo(schedule[i]["attributes"]["arrival_time"].substr(11, 8));
+                console.log(arrivalTime);
+                departureTime = correctInfo(schedule[i]["attributes"]["departure_time"].substr(11, 8));
+                direction = correctInfo(schedule[i]["attributes"]["direction_id"]);
+                content += "<tr><td>" + arrivalTime + "</td><td>" + departureTime + "</td><td>" + direction + "</td></tr>";
             }
             infoWindow.setContent(content);
         }
@@ -77,6 +83,17 @@ function getInformation(stationID, infoWindow, stationName) {
         }
     }
     request.send();
+}
+
+function correctInfo(information) {
+    if (information == 0)
+        return "Ashmont/Braintree";
+    else if (information == 1)
+        return "Alewife";
+    else if (information == null || information == undefined || information == "")
+        return "Not Available";
+    else
+        return information;
 }
 
 function drawPolyline() {
