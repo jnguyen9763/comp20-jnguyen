@@ -39,15 +39,14 @@ function initMap() {
     });
     // Creates markers for each station
     for (var i = 0; i < stopNames.length; i++) {
-        marker[i] = new google.maps.Marker({position: stations[stopNames[i]]["coord"], map: map, icon: "subway.png"});
+        marker[i] = new google.maps.Marker({title: stopNames[i], position: stations[stopNames[i]]["coord"], map: map, icon: "subway.png"});
         stop_id = stations[stopNames[i]]["stop_id"];
-        console.log(stop_id);
         google.maps.event.addListener(marker[i], "click", (function(marker, infoWindow, stop_id) {
             return function() {
                 if (infoWindow != undefined)
                     infoWindow.close();
                 infoWindow = new google.maps.InfoWindow();
-                getInformation(stop_id, infoWindow);
+                getInformation(stop_id, infoWindow, marker.title);
                 infoWindow.open(map, marker);
             }
         }(marker[i], infoWindow[i], stop_id)));
@@ -57,18 +56,21 @@ function initMap() {
     findMyLocation();
 }
 
-function getInformation(stationID, infoWindow) {
+function getInformation(stationID, infoWindow, stationName) {
     var request = new XMLHttpRequest();
     var url = "https://chicken-of-the-sea.herokuapp.com/redline/schedule.json?stop_id=" + stationID;
-    console.log(url);
     request.open("get", url, true);
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
             var data = request.responseText;
             var schedule = JSON.parse(data);
-            var test = schedule["data"][0]["attributes"]["arrival_time"];
-            console.log(test);
-            infoWindow.setContent(test);
+            schedule = schedule["data"];
+            var content = "<p>";
+            content += stationName + "</p><p>";
+            for (var i = 0; i < schedule.length; i++) {
+                console.log(schedule[i]["attributes"]);
+            }
+            infoWindow.setContent(content);
         }
         if (request.readyState == 4 && request.status != 200) {
             alert("An error has occured.");
