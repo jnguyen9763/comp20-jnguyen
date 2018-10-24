@@ -145,7 +145,8 @@ function findNearestStation() {
         }
     }
 
-    distance *= 0.00062137;
+    distance *= 0.00062137 * 100;
+    distance = Math.round(distance) / 100;
     showNearestStation(stations[station]["coord"]);
 
     return "<p>Nearest Station: " + station + "</p><p>Distance: " + distance + " miles</p>";
