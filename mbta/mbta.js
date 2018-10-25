@@ -66,15 +66,16 @@ function getInformation(stationID, infoWindow, stationName) {
             var data = request.responseText;
             var schedule = JSON.parse(data);
             schedule = schedule["data"];
-            console.log(schedule);
             var content = "<div class='header'>";
             content += stationName + "</div><table><tr><th>Arrival Time</th><th>Departure Time</th><th>Direction</th></tr>";
+            if (schedule.length == 0) {
+                content += "<tr><td>Not Available</td><td>Not Available</td><td>Not Available</td></tr>";
+            }
             for (var i = 0; i < schedule.length; i++) {
                     arrivalTime = correctInfo(schedule[i]["attributes"]["arrival_time"]);
                     departureTime = correctInfo(schedule[i]["attributes"]["departure_time"]);
                     direction = correctInfo(schedule[i]["attributes"]["direction_id"]);
                     content += "<tr><td>" + arrivalTime + "</td><td>" + departureTime + "</td><td>" + direction + "</td></tr>";
-                    console.log(arrivalTime);
             }
             content += "</table>";
             infoWindow.setContent(content);
@@ -87,7 +88,6 @@ function getInformation(stationID, infoWindow, stationName) {
 }
 
 function correctInfo(information) {
-    console.log(information);
     if (information == 0)
         return "Ashmont/Braintree";
     else if (information == 1)
