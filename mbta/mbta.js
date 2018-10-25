@@ -41,6 +41,7 @@ function initMap() {
     for (var i = 0; i < stopNames.length; i++) {
         marker[i] = new google.maps.Marker({title: stopNames[i], position: stations[stopNames[i]]["coord"], map: map, icon: "subway.png"});
         stop_id = stations[stopNames[i]]["stop_id"];
+        // Creates infoWindows for each station
         google.maps.event.addListener(marker[i], "click", (function(marker, infoWindow, stop_id) {
             return function() {
                 if (infoWindow != undefined)
@@ -136,7 +137,9 @@ function findMyLocation() {
 function showMyLocation() {
     var infoWindow;
     map.panTo(myLocation);
+    // Create marker for user using their location
     var marker = new google.maps.Marker({position: myLocation, map: map, icon: "person.png"});
+    // Create infoWindow for user
     google.maps.event.addListener(marker, "click", (function(marker, infoWindow) {
         return function() {
             if (infoWindow != undefined)
@@ -155,6 +158,7 @@ function findNearestStation() {
     var distance = google.maps.geometry.spherical.computeDistanceBetween(myCoord, stationCoord);
     var new_distance;
 
+    // Getting shortest distance
     for (var i = 1; i < stopNames.length; i++) {
         stationCoord = new google.maps.LatLng(stations[stopNames[i]]["coord"]);
         new_distance = google.maps.geometry.spherical.computeDistanceBetween(myCoord, stationCoord);
@@ -164,6 +168,7 @@ function findNearestStation() {
         }
     }
 
+    // Converting distance from miles to meters
     distance *= 0.00062137 * 100;
     distance = Math.round(distance) / 100;
     showNearestStation(stations[station]["coord"]);
