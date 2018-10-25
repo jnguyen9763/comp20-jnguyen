@@ -63,19 +63,20 @@ function getInformation(stationID, infoWindow, stationName) {
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
             var arrivalTime, departureTime, direction;
-            console.log(arrivalTime);
             var data = request.responseText;
             var schedule = JSON.parse(data);
             schedule = schedule["data"];
+            console.log(schedule);
             var content = "<div class='header'>";
             content += stationName + "</div><table><tr><th>Arrival Time</th><th>Departure Time</th><th>Direction</th></tr>";
             for (var i = 0; i < schedule.length; i++) {
-                arrivalTime = correctInfo(schedule[i]["attributes"]["arrival_time"].substr(11, 8));
-                console.log(arrivalTime);
-                departureTime = correctInfo(schedule[i]["attributes"]["departure_time"].substr(11, 8));
-                direction = correctInfo(schedule[i]["attributes"]["direction_id"]);
-                content += "<tr><td>" + arrivalTime + "</td><td>" + departureTime + "</td><td>" + direction + "</td></tr>";
+                    arrivalTime = correctInfo(schedule[i]["attributes"]["arrival_time"]);
+                    departureTime = correctInfo(schedule[i]["attributes"]["departure_time"]);
+                    direction = correctInfo(schedule[i]["attributes"]["direction_id"]);
+                    content += "<tr><td>" + arrivalTime + "</td><td>" + departureTime + "</td><td>" + direction + "</td></tr>";
+                    console.log(arrivalTime);
             }
+            content += "</table>";
             infoWindow.setContent(content);
         }
         if (request.readyState == 4 && request.status != 200) {
@@ -86,14 +87,15 @@ function getInformation(stationID, infoWindow, stationName) {
 }
 
 function correctInfo(information) {
+    console.log(information);
     if (information == 0)
         return "Ashmont/Braintree";
     else if (information == 1)
         return "Alewife";
-    else if (information == null || information == undefined || information == "")
+    else if (information == null)
         return "Not Available";
     else
-        return information;
+        return information.substr(11, 8);
 }
 
 function drawPolyline() {
