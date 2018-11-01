@@ -8,7 +8,14 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-        // Your work will be done here...
+        $(document).ready(function() {
+            var message;
+            $("#msg").change(function() {
+                message = $(this).val();
+                console.log(message);
+                $("#log").after("<p>" + message + "</p>");
+            });
+        });
     </script>
 </head>
 
