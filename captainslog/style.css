@@ -1,0 +1,15 @@
+html {
+    text-align: center;
+}
+
+body {
+    background-color: beige;
+}
+
+h1, h3 {
+    font-family: papyrus;
+}
+
+p {
+    text-decoration: underline;
+}
