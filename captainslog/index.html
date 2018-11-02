@@ -13,14 +13,12 @@
             var keys = Object.keys(localStorage);
             var sortedKeys = sortKeys(keys);
             for (var i = 0; i < localStorage.length; i++) {
-                console.log(sortedKeys[i]);
                 $("#log").after("<p>" + localStorage.getItem(sortedKeys[i]) + "</p>");
             }
             $("#msg").change(function() {
                 var date = new Date();
                 message = date + " - " + $(this).val();
                 localStorage.setItem(date.getTime(), message);
-                console.log(date.getTime());
                 $("#log").after("<p>" + message + "</p>");
                 $(this).val("");
             });
