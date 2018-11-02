@@ -9,17 +9,46 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            var message;
+            var message, key;
+            var keys = Object.keys(localStorage);
+            console.log(keys);
+            var sortedKeys = sortKeys(keys);
+            console.log(sortedKeys);
             for (var i = 0; i < localStorage.length; i++) {
-                $("#log").after("<p>" + localStorage.getItem(localStorage.key(i)) + "</p>");
+                key = localStorage.key(i);
+                $("#log").after("<p>" + localStorage.getItem(key) + "</p>");
             }
             $("#msg").change(function() {
-                message = new Date() + " - " + $(this).val();
-                localStorage.setItem(new Date().getMilliseconds(), message);
+                var date = new Date();
+                message = date + " - " + $(this).val();
+                localStorage.setItem(date.getTime(), message);
+                console.log(date.getTime());
                 $("#log").after("<p>" + message + "</p>");
                 $(this).val("");
             });
         });
+
+        function sortKeys(keys) {
+            var sorted;
+            while (!sorted) {
+                sorted = sort(keys);
+            }
+            return keys;
+        }
+
+        function sort(array) {
+            var sorted = true;
+            var temp;
+            for (var i = 0; i < array.length - 1; i++) {
+                if (Number(array[i]) < Number(array[i + 1])) {
+                    sorted = false;
+                    temp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = temp;
+                }
+            }
+            return sorted;
+        }
     </script>
 </head>
 
