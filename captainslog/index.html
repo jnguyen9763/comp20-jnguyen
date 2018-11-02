@@ -11,12 +11,10 @@
         $(document).ready(function() {
             var message, key;
             var keys = Object.keys(localStorage);
-            console.log(keys);
             var sortedKeys = sortKeys(keys);
-            console.log(sortedKeys);
             for (var i = 0; i < localStorage.length; i++) {
-                key = localStorage.key(i);
-                $("#log").after("<p>" + localStorage.getItem(key) + "</p>");
+                console.log(sortedKeys[i]);
+                $("#log").after("<p>" + localStorage.getItem(sortedKeys[i]) + "</p>");
             }
             $("#msg").change(function() {
                 var date = new Date();
@@ -40,7 +38,7 @@
             var sorted = true;
             var temp;
             for (var i = 0; i < array.length - 1; i++) {
-                if (Number(array[i]) < Number(array[i + 1])) {
+                if (Number(array[i]) > Number(array[i + 1])) {
                     sorted = false;
                     temp = array[i];
                     array[i] = array[i + 1];
