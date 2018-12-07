@@ -16,7 +16,11 @@
             <li><p>Lastly, I created a bash script that would continually send query strings to the serverside. My script looked like this:</p><p>#!/bin/bash</p><p>while true; do curl --data "username=apple&score=100&grid={}" http://localhost:3000/submit; done</p><p>I would run the script on my terminal.</p></li>
         </ol>
         <h2>Abstract of Findings</h2>
-        <p></p>
+        <ol>
+            <li><p>Cross site scripting occurs when a user inputs in code instead of standard text in a text box, for exmaple, from forms or logins. When the code gets sent over to a server, it can prohibit other users from using the site or redirect them to another page. Hence, it can pose security risk to any user that uses the site. </p></li>
+            <li><p>An injection attack happens when a user is able to get any information from the server using query strings. Query strings are like refined searches. So instead of returning specific information from the server based on the query string, if a user decides to modify the query string to release all information that the server stores, it can pose a privacy risk to all users.</p></li>
+            <li><p>Overloading a database can happen if a user repeatedly sends the server information. The user can do this by coding a loop that will continuously run, sending useless information infinitely. This can pose a problem for the website if it heavily depends on the dataase. If the database can no longer hold anymore data, then the site can lose a big part of its functionality.</p></li>
+        </ol>
         <h2>Issues Found</h2>
         <ol>
             <li><h3>Cross Site Scripting</h3><p>Location: Both clientside and serverside</p><p>Severity of issue: High</p><p>Since I used a while loop, it makes it impossible for users to play 2048 or check the high scores on Heroku. The only way to get rid of the problem is to clear out the entry on the database, which can be hard to do if the implementer is not aware of the attack or if there are a lot of entries in the database.</p><p>Description of issue:</p><p><img src="#" alt="XSS attack" /></p><p>Resolution: You can strip all user input from special characters so that the script will not work.</p></li>
