@@ -9,8 +9,18 @@
         <h2>Introduction</h2>
         <p>The goal of this assignment was to find security vulnerabilities in the 2048 servers we created for Assignment 3. For this assignment, I was assigned Ming's 2048 game server to play with.</p>
         <h2>Methodology</h2>
-        <p></p>
+        <p>I decided to run Ming's code locally since other people were using his Heroku server. I also cloned the original 2048 game and made changes based on Ming's piazza post.</p>
+        <ol>
+            <li><p>First, I tried to send a script to the serverside using the prompt form from the 2048 client. When I got the prompt to pop up, I sent "&ltscript>while(true){alert("Hi");}&lt/script>" to the server.</p></li>
+            <li><p>Another method that I tried was the [$ne] trick shown in class. Since I hosted the server locally, I typed "http://localhost:3000/scores.json?username[$ne]=watermlon" into the browser.</p></li>
+            <li><p>Lastly, I created a bash script that would continually send query strings to the serverside. My script looked like this:</p><p>#!/bin/bash</p><p>while true; do curl --data "username=apple&score=100&grid={}" http://localhost:3000/submit; done</p><p>I would run the script on my terminal.</p></li>
+        </ol>
         <h2>Abstract of Findings</h2>
+        <ol>
+            <li><p></p></li>
+            <li><p></p></li>
+            <li><p></p></li>
+        </ol>
         <p></p>
         <h2>Issues Found</h2>
         <p></p>
